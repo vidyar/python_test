@@ -18,10 +18,11 @@ def main(task="3773"):
     uname   = getpass.getpass('Enter Username :')
     pwd     = getpass.getpass('Enter password :')
     url     = getpass.getpass('Enter URL :')
-
+    url="https://intranet.hiq.se/activity/printactivity.aspx?id="+task
     uname = '%s\%s' % (domain,uname)
-    print login(url,uname,pwd)
-
+    data=login(url,uname,pwd)
+    data=data.split("table")
+    print data[1]
 def login(url, username, password):
     parsed_url = urlparse(url)
     base_uri = urlunparse((parsed_url[0],parsed_url[1],"","","",""))
@@ -35,7 +36,6 @@ def login(url, username, password):
     opener = urllib2.build_opener(proxy_handler, auth_NTLM, auth_digest, auth_basic)
     urllib2.install_opener(opener)
     response = urllib2.urlopen(url) 
-
     return response.read()
 def testPlot():
         #Stack horizontal
