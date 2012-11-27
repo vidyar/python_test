@@ -41,8 +41,11 @@ def main(task="3773"):
     soup = BeautifulSoup(data)
     res=    [ [ col.renderContents() for col in row.findAll('td') ]
              for row in soup.find('table',id="tbl_all").findAll('tr') ]
-   
- 
+    del res[0]
+    del res[0]
+    del res[-1]
+    print res
+    
 
 
 
