@@ -9,6 +9,7 @@ from ntlm import HTTPNtlmAuthHandler
 import os
 import sys
 import cairoplot
+from sort import sort
 
 from BeautifulSoup import BeautifulSoup
 
@@ -44,7 +45,7 @@ def main(task="3773"):
     del res[0]
     del res[0]
     del res[-1]
-    print res
+    sort(res)
     
 
 
