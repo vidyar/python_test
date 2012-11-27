@@ -1,7 +1,7 @@
 
 import urllib2
 import getpass
-import cairo, math, random
+import cairoplot, math, random
 import urllib2
 from urlparse import urlparse, urlunparse
 import ntlm
