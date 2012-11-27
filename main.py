@@ -9,7 +9,7 @@ from ntlm import HTTPNtlmAuthHandler
 import os
 import sys
 import cairoplot
-from sort import sort
+
 
 from BeautifulSoup import BeautifulSoup
 
@@ -39,13 +39,27 @@ def main(task="3773"):
     url="https://"+url+"/activity/printactivity.aspx?id="+task
     uname = '%s\%s' % (domain,uname)
     data=login(url,uname,pwd)
+    print "data got"
     soup = BeautifulSoup(data)
-    res=    [ [ col.renderContents() for col in row.findAll('td') ]
+    print "soupified"
+    sres=    [ [ col.renderContents() for col in row.findAll('td') ]
              for row in soup.find('table',id="tbl_all").findAll('tr') ]
-    del res[0]
-    del res[0]
-    del res[-1]
-    sort(res)
+    del sres[0]
+    del sres[0]
+    del sres[-1]
+    for row in sres:
+        pos=0
+        name=row[1].replace('&nbsp','')
+        answer=row[2]+row[3]
+        answer=answer.replace('&nbsp;','')
+        if answer=='Y':
+            print name,"is comming"
+        elif answer=='N':
+            print name,"is not comming"
+        else:
+            print name,"havent replied",answer
+                
+
     
 
 
