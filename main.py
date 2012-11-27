@@ -35,13 +35,17 @@ def main(task="3773"):
     uname   = getpass.getpass('Enter Username :')
     pwd     = getpass.getpass('Enter password :')
     url     = getpass.getpass('Enter URL :')
-    url="https://intranet.hiq.se/activity/printactivity.aspx?id="+task
+    url="https://"+url+"/activity/printactivity.aspx?id="+task
     uname = '%s\%s' % (domain,uname)
     data=login(url,uname,pwd)
     soup = BeautifulSoup(data)
-    print soup.prettify()
+    res=    [ [ col.renderContents() for col in row.findAll('td') ]
+             for row in soup.find('table',id="tbl_all").findAll('tr') ]
+   
+ 
 
-    
+
+
 def testPlot():
         #Stack horizontal
     #Stack vertical
