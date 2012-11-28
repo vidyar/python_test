@@ -73,7 +73,7 @@ def login(url, username, password):
     response = urllib2.urlopen(url) 
     return response.read()
 
-def main(task="3773"):
+def main():
 
     if os.path.isfile('test.conf'):
         (task,domain,uname,pwd,url)=readConfig()
@@ -92,9 +92,7 @@ def main(task="3773"):
     del sres[-1]
     res = []
     for row in sres:
-        aY=0
-        aN=0	
-        aNA=0
+        aY=aN=aNA=0
         found=False
         name=row[1].replace('&nbsp','')
         answer=row[2]+row[3]
