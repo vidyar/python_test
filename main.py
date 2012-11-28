@@ -18,7 +18,7 @@ def readConfig(task=None,domain=None,uname=None,pwd=None,url=None):
     Config.read("test.conf")
     print Config.sections()
     dict =ConfigSectionMap(Config,ConfigSectionMap(Config,'Site')['usesite'])
-    print dict
+    print "Using configuration:",ConfigSectionMap(Config,'Site')['usesite']
     for key in dict.keys():
         if key == 'task':
             task=dict[key]
@@ -120,7 +120,7 @@ def main(task="3773"):
     plotName = []
     for rec in res:
       plotData[rec[0]] = [rec[1],rec[2],rec[3]]
-    print res
+    print plotData
     testPlot(plotData,plotData.keys(),'commingGoing')
     print 
 def testPlot(data,plotName,plotFileName):
@@ -131,7 +131,7 @@ def testPlot(data,plotName,plotFileName):
     colorYellow=(1,1,0.0)
     colors = [ colorGreen, colorRed,  colorYellow]
     cairoplot.vertical_bar_plot ( plotFileName, data, 1920, 1080, border = 20, display_values = True, grid = True, rounded_corners = True, stack=True,colors = colors, x_labels=plotName )
-    print "wrote",plotName
+    print "wrote",plotFileName
     
     
         
