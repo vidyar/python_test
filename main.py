@@ -10,6 +10,8 @@ import os
 import sys
 import cairoplot
 import ConfigParser
+from plotter import *
+import plotter
 
 from BeautifulSoup import BeautifulSoup
 def readConfig(task=None,domain=None,uname=None,pwd=None,url=None):
@@ -108,33 +110,17 @@ def main(task="3773"):
           if name == group[0]:
             found=True
         if found == False:
-          res.append([name,0,0,0])
+          res.append([name,0,0,0,0])
         for group in res:
             if name == group[0]:
               group[1] += aY
               group[2] += aN
               group[3] += aNA
-
-
-    plotData = dict()
-    plotName = []
-    for rec in res:
-      plotData[rec[0]] = [rec[1],rec[2],rec[3]]
-    print plotData
-    testPlot(plotData,plotData.keys(),'commingGoing')
-    print 
-def testPlot(data,plotName,plotFileName):
-
-    plotFileName += '.svg'
-    colorGreen = (0,1,0)
-    colorRed = (1,0,0)
-    colorYellow=(1,1,0.0)
-    colors = [ colorGreen, colorRed,  colorYellow]
-    cairoplot.vertical_bar_plot ( plotFileName, data, 1920, 1080, border = 20, display_values = True, grid = True, rounded_corners = True, stack=True,colors = colors, x_labels=plotName )
-    print "wrote",plotFileName
-    
-    
-        
+              group[4] += aY +aN +aNA
+    totalPlot(res)      
+    totalComming(res)
+    groupPie(res)
+            
         
 if __name__ == "__main__":
     main()
