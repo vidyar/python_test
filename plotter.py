@@ -47,5 +47,4 @@ def groupPie(res):
         d['No'] = rec[2]
         d['No reply'] = rec[3]       
         groupPieWorker(rec[0],d)
-    
-    
+
